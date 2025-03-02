@@ -1,5 +1,5 @@
 {
-  "secret_key": "",
-  "base_url": "",
-  "model": ""
+  "secret_key": "ek-proxy-tQfUfrWwoAPgbTqrjWFqXbwrde2OO1jcSNrJRk1hiwu3",
+  "base_url": "https://api.electronhub.top/v1/",
+  "model": "gpt-4o"
 }

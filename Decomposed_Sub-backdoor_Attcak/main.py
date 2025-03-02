@@ -69,22 +69,22 @@ if __name__ == "__main__":
     df = pd.read_json(file_path)
     for index, row in df.iloc[0:2].iterrows():
     #row = df.iloc[3]
-       with open("backdoor_stats.txt", "a") as f:
-           #写入-----------------------------------分割
-           f.write("-----------------------------------\n")
-       task = row['query']
-       if "target tools" in df.columns:
-           pre_target_tools = row["target tools"]
-           target_tools = [tool for tool in tools if tool.name in pre_target_tools]
-       else:
-           target_tools = tools
-       my_agent = MyAgent(
-           llm=BaseChatModel,
-           tools=target_tools,
-           prompt=prompt_text,
-           final_prompt=final_prompt,
-       )
+        with open("backdoor_stats.txt", "a") as f:
+            #写入-----------------------------------分割
+            f.write("-----------------------------------\n")
+        task = row.iloc[0]
+        if "target tools" in df.columns:
+            pre_target_tools = row["target tools"]
+            target_tools = [tool for tool in tools if tool.name in pre_target_tools]
+        else:
+            target_tools = tools
+        my_agent = MyAgent(
+            llm=BaseChatModel,
+            tools=target_tools,
+            prompt=prompt_text,
+            final_prompt=final_prompt,
+        )
 
-       reply = my_agent.run(task)
-       print(reply)
-       time.sleep(10)
+        reply = my_agent.run(task)
+        print(reply)
+        time.sleep(10)
